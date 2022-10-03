@@ -1,7 +1,7 @@
 # Hug. 
 
 <p>
-  <img src="docs/meme.jpg" width=35% height=35%/>
+  <img src="docs/meme.jpg" width=40% height=40%/>
 </p>
 
 Hug - Lib with spring extension for testcontainers & junit extension for mongo.
