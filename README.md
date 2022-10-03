@@ -1,6 +1,6 @@
 # Hug. 
 
-<p>
+<p align="center">
   <img src="docs/meme.jpg" width=40% height=40%/>
 </p>
 
