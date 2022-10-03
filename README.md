@@ -1,10 +1,10 @@
 # Hug. 
 
-<p align="center">
-  <img src="docs/meme.jpg"/>
+<p>
+  <img src="docs/meme.jpg" width=35% height=35%/>
 </p>
 
-Hug - Spring extension for testcontainers & junit extension for mongo.
+Hug - Lib with spring extension for testcontainers & junit extension for mongo.
 
 How include to maven project:
 ```xml
