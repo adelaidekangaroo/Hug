@@ -5,7 +5,6 @@ import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.springframework.context.ApplicationContextException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
@@ -14,8 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public final class MongoExtensionUtils {
 
@@ -52,21 +49,11 @@ public final class MongoExtensionUtils {
     }
 
     public static String getDatabaseName() {
-        var uri = getDatabaseURI();
-        var pattern = Pattern.compile("mongodb:(?://[^/]+/)?(\\w+)");
-        Matcher matcher = pattern.matcher(uri);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        throw new IllegalArgumentException("invalid database uri - " + uri);
+        return System.getProperty("spring.data.mongodb.database");
     }
 
     public static String getDatabaseURI() {
-        var uri = System.getProperty("spring.data.mongodb.uri");
-        if (uri == null) {
-            throw new ApplicationContextException("Not found spring.data.mongodb.uri property");
-        }
-        return uri;
+        return System.getProperty("spring.data.mongodb.uri");
     }
 
     public static void loadApplicationContext(ExtensionContext context) {
