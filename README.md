@@ -1,7 +1,7 @@
 # Hug. 
 
-<p style="text-align: center;">
-  <img src="docs/meme.jpg" alt=""/>
+<p align="center">
+  <img src="docs/meme.jpg"/>
 </p>
 
 Hug - Spring extension for testcontainers & junit extension for mongo.
