@@ -5,6 +5,7 @@ import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
@@ -61,7 +62,11 @@ public final class MongoExtensionUtils {
     }
 
     public static String getDatabaseURI() {
-        return System.getProperty("spring.data.mongodb.uri");
+        var uri = System.getProperty("spring.data.mongodb.uri");
+        if (uri == null) {
+            throw new ApplicationContextException("Not found spring.data.mongodb.uri property");
+        }
+        return uri;
     }
 
     public static void loadApplicationContext(ExtensionContext context) {
