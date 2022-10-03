@@ -6,6 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.core.Ordered;
 import superperk.hug.testcontainers.annotations.ContainerDependencies;
 import superperk.hug.testcontainers.definitions.AbstractContainerDefinition;
@@ -31,7 +33,8 @@ public final class ContainerBeanFactoryPostProcessor implements BeanFactoryPostP
     }
 
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    public void postProcessBeanFactory(@NotNull ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        registerContainerBeansToApplicationContext(abstractContainerDefinitions, beanFactory);
         abstractContainerDefinitions.stream()
                 .filter(ContainerBeanFactoryPostProcessor::filterContainerTypesWithDependencies)
                 .map(ContainerBeanDefinition::of)
@@ -43,9 +46,22 @@ public final class ContainerBeanFactoryPostProcessor implements BeanFactoryPostP
                                             .map(beanFactory::getBeanDefinition)
                                             .forEach(beanDefinitionByDependentBeanType ->
                                                     beanDefinitionByDependentBeanType.setDependsOn(containerBeanDefinition.getBeanName()));
-                                }));
-
+                                })
+                );
         beanFactory.addBeanPostProcessor(new ContainerBeanPostProcessor(abstractContainerDefinitions));
+    }
+
+    private void registerContainerBeansToApplicationContext(List<AbstractContainerDefinition> abstractContainerDefinitions,
+                                                            ConfigurableListableBeanFactory beanFactory) {
+        BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
+        abstractContainerDefinitions.forEach(abstractContainerDefinition -> {
+            var containerBeanName = abstractContainerDefinition.getContainerType().getBeanName();
+            var containerBeanType = abstractContainerDefinition.getContainerType().getBeanType();
+            registry.registerBeanDefinition(
+                    containerBeanName,
+                    BeanDefinitionBuilder.genericBeanDefinition(containerBeanType).getBeanDefinition()
+            );
+        });
     }
 
     @Override

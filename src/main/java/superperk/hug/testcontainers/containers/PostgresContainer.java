@@ -1,13 +1,11 @@
 package superperk.hug.testcontainers.containers;
 
-import org.springframework.stereotype.Component;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 import superperk.hug.testcontainers.annotations.ContainerDependencies;
 
 import javax.sql.DataSource;
 
-@Component
 @ContainerDependencies(initBefore = DataSource.class)
 public final class PostgresContainer
         extends AbstractGenericContainer

@@ -1,10 +1,8 @@
 package superperk.hug.testcontainers.containers;
 
-import org.springframework.stereotype.Component;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.utility.DockerImageName;
 
-@Component
 public final class MongoContainer extends AbstractGenericContainer implements Container {
     private MongoDBContainer sourceContainer;
 
