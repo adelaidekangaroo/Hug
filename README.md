@@ -4,9 +4,9 @@
   <img src="docs/meme.jpg" width=45% height=45%/>
 </p>
 
-Hug - Lib with spring extension for testcontainers & junit extension for mongo.
+`Hug` - Lib with spring extension for testcontainers & junit extension for mongo.
 
-### What is a hug-testcontainers?
+### What is a `hug` - testcontainers?
 
 Before, to set up a container, you had to write things like this:
 ```java
@@ -41,7 +41,7 @@ What's wrong here?
 Now you can do it like this:
 ```java
 // other annotations
-@EnablePostgresContainer(image = "postgres:14.3") // automatic initialization and launch of the container
+@EnablePostgresContainer(image = "postgres:14.3") // automatic initialization and start of the container
 // other annotations
 class ClassTest {
     // tests
@@ -68,7 +68,7 @@ class ClassTest {
 }
 ```
 
-### What is a hug-mongo extension?
+### What is a `hug` - mongo extension?
 Maybe you know this annotation:
 ```java
 @Sql(scripts = ["classpath:db/population.sql"])
@@ -82,6 +82,7 @@ There is nothing like this in MongoDB. `Hug` adds an annotation similar to @Sql:
 class ClassTest {
 }
 ```
+This annotation will add data from the `db/mongo/populate/specials.json` to your database before all tests.
 ### How include to maven project:
 
 1. Add dependency to your pom.xml
