@@ -12,7 +12,6 @@ Before, to set up a container, you had to write things like this:
 ```java
 // other annotations
 @Testcontainers // manage life cycle testcontainers
-// other annotations
 class ClassTest {
     private static final DockerImageName POSTGRES_IMAGE_NAME = DockerImageName.parse("postgres:14.3");
     @Container
@@ -42,7 +41,6 @@ Now you can do it like this:
 ```java
 // other annotations
 @EnablePostgresContainer(image = "postgres:14.3") // automatic initialization and start of the container
-// other annotations
 class ClassTest {
     // tests
 }
@@ -58,7 +56,6 @@ If you need some kind of manipulation with the container bean, then you can inje
 ```java
 // other annotations
 @EnablePostgresContainer(image = "postgres:14.3") // automatic initialization and launch of the container
-// other annotations
 class ClassTest {
 
     @Autowired
