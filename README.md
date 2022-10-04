@@ -6,7 +6,7 @@
 
 `Hug` - Lib with spring extension for testcontainers & junit extension for mongo.
 
-### What is a `hug` - testcontainers?
+### What is a `hug` - testcontainers? :mag:
 
 Before, to set up a container, you had to write things like this:
 ```java
@@ -68,7 +68,7 @@ class ClassTest {
 }
 ```
 
-### What is a `hug` - mongo extension?
+### What is a `hug` - mongo extension? :mag:
 Maybe you know this annotation:
 ```java
 @Sql(scripts = ["classpath:db/population.sql"])
@@ -85,7 +85,8 @@ class ClassTest {
 }
 ```
 The handler of this annotation will insert data from the `db/mongo/populate/specials.json` to your database before all tests.
-### How include to maven project:
+
+### How include to maven project: :mag:
 
 1. Add dependency to your pom.xml
 ```xml
