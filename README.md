@@ -82,7 +82,7 @@ There is nothing like this in MongoDB. `Hug` adds an annotation similar to @Sql:
 class ClassTest {
 }
 ```
-The handler of this annotation will add data from the `db/mongo/populate/specials.json` to your database before all tests.
+The handler of this annotation will insert data from the `db/mongo/populate/specials.json` to your database before all tests.
 ### How include to maven project:
 
 1. Add dependency to your pom.xml
