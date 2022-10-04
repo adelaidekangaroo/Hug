@@ -54,6 +54,34 @@ Container reuse is available by default if you have specified the required field
 docker.client.strategy=org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy
 testcontainers.reuse.enable=true
 ```
+If you need some kind of manipulation with the container bean, then you can inject it like with any other bean:
+```java
+// other annotations
+@EnablePostgresContainer(image = "postgres:14.3") // automatic initialization and launch of the container
+// other annotations
+class ClassTest {
+
+    @Autowired
+    private PostgresContainer postgresContainer; // container proxy bean
+    
+    // tests
+}
+```
+
+### What is a hug-mongo extension?
+Maybe you know this annotation:
+```java
+@Sql(scripts = ["classpath:db/population.sql"])
+class ClassTest {
+}
+```
+This annotation executes the script from `db/population.sql`.
+There is nothing like this in MongoDB. `Hug` adds an annotation similar to @Sql:
+```java
+@MongoInsert(location = "db/mongo/populate/specials.json", collection = "specials")
+class ClassTest {
+}
+```
 ### How include to maven project:
 
 1. Add dependency to your pom.xml
