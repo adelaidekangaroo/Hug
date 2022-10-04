@@ -51,7 +51,7 @@ class ClassTest {
 Container reuse is available by default if you have specified the required field in `.testcontainers.properties`:
 ```
 #Modified by Testcontainers
-docker.client.strategy=org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy
+...
 testcontainers.reuse.enable=true
 ```
 If you need some kind of manipulation with the container bean, then you can inject it like with any other bean:
