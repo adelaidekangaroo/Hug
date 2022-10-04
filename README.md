@@ -75,14 +75,14 @@ Maybe you know this annotation:
 class ClassTest {
 }
 ```
-This annotation executes the script from `db/population.sql`.
+The handler of this annotation executes the script from `db/population.sql`.
 There is nothing like this in MongoDB. `Hug` adds an annotation similar to @Sql:
 ```java
 @MongoInsert(location = "db/mongo/populate/specials.json", collection = "specials")
 class ClassTest {
 }
 ```
-This annotation will add data from the `db/mongo/populate/specials.json` to your database before all tests.
+The handler of this annotation will add data from the `db/mongo/populate/specials.json` to your database before all tests.
 ### How include to maven project:
 
 1. Add dependency to your pom.xml
