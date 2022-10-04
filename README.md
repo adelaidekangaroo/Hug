@@ -73,6 +73,7 @@ Maybe you know this annotation:
 ```java
 @Sql(scripts = ["classpath:db/population.sql"])
 class ClassTest {
+  // tests
 }
 ```
 The handler of this annotation executes the script from `db/population.sql`.
@@ -80,6 +81,7 @@ There is nothing like this in MongoDB. `Hug` adds an annotation similar to @Sql:
 ```java
 @MongoInsert(location = "db/mongo/populate/specials.json", collection = "specials")
 class ClassTest {
+  // tests
 }
 ```
 The handler of this annotation will insert data from the `db/mongo/populate/specials.json` to your database before all tests.
